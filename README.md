@@ -16,13 +16,13 @@ Fetch JSON content from Gatsby with API-like static feeds that automatically upd
 With NPM:
 
 ```bash
-npm install gatsby-plugin-json-output
+npm install gatsby-plugin-json-output-multi-feed
 ```
 
 With Yarn:
 
 ```bash
-yarn add gatsby-plugin-json-output
+yarn add gatsby-plugin-json-output-multi-feed
 ```
 
 ## Usage
@@ -79,6 +79,7 @@ plugins: [
         excerpt: node.excerpt,
       })),
       nodesPerFeedFile: 100,
+      feedName: 'customFeedName',
     }
   }
 ];
@@ -174,7 +175,7 @@ feedMeta: {
 
 ### `serializeFeed` (optional
 
-Include this if you want to create JSON feed files.
+Include this if you want to create JSON feed files. If you want to create multiple types of feed files, add multiple `gatsby-plugin-json-output-multi-feed` objects to `gatsby-config.js`, name each feed in its `serializeFeed` function using the `feedName` field.
 
 This plugin uses this serializeFeed function to structure the contents of the JSON feed files. You can use this function to restructure the nested nature of `graphQLQuery`. This plugin will pass the results object of the `graphQLQuery` to your `serializeFeed` function.
 
