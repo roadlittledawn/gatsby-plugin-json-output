@@ -16,13 +16,13 @@ Fetch JSON content from Gatsby with API-like static feeds that automatically upd
 With NPM:
 
 ```bash
-npm install gatsby-plugin-json-output
+npm install gatsby-plugin-json-output-multi-feed
 ```
 
 With Yarn:
 
 ```bash
-yarn add gatsby-plugin-json-output
+yarn add gatsby-plugin-json-output-multi-feed
 ```
 
 ## Usage
@@ -79,6 +79,7 @@ plugins: [
         excerpt: node.excerpt,
       })),
       nodesPerFeedFile: 100,
+      feedName: 'customFeedName',
     }
   }
 ];
@@ -172,9 +173,9 @@ feedMeta: {
 }
 ```
 
-### `serializeFeed` (optional
+### `serializeFeed` (optional)
 
-Include this if you want to create JSON feed files.
+Include this if you want to create JSON feed files. If you want to create multiple types of feed files, add multiple `gatsby-plugin-json-output-multi-feed` objects to `gatsby-config.js`, specify a name using the `feedName` field. This is useful if you want to provide feeds with different kinds of content / data.
 
 This plugin uses this serializeFeed function to structure the contents of the JSON feed files. You can use this function to restructure the nested nature of `graphQLQuery`. This plugin will pass the results object of the `graphQLQuery` to your `serializeFeed` function.
 
@@ -228,6 +229,12 @@ You will find the feed files in the built assets starting from `public/feed-1.js
 
 This is an optional number (integer) of nodes to include per feed file. Defaults to 100.
 
+### `feedName` (optional)
+
+Default naming is `feed` followed by the pagination. Example: `feed-1.json`.
+
+Use this option to set the name of the feed file. This is useful if you want to create multiple feed files for different kinds of content / structure.
+
 ## Uninstall
 
 Remove the config from your `gatsby-config.js`, then:
@@ -235,11 +242,11 @@ Remove the config from your `gatsby-config.js`, then:
 With NPM:
 
 ```bash
-npm uninstall gatsby-plugin-json-output
+npm uninstall gatsby-plugin-json-output-multi-feed
 ```
 
 With Yarn:
 
 ```bash
-yarn remove gatsby-plugin-json-output
+yarn remove gatsby-plugin-json-output-multi-feed
 ```
